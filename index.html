@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG Path Gradient Tool</title>
+    <link href="./src/style.css" rel="stylesheet" />
+    <script src="./src/main.js" defer></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <h1>SVG Path Gradient Tool</h1>
+
+      <div id="drop-zone" class="drop-zone">
+        <p>
+          Drag & drop an SVG file with a single path, or click to select a file
+        </p>
+        <input
+          type="file"
+          id="file-input"
+          style="display: none"
+          accept=".svg"
+        />
+      </div>
+
+      <div class="canvas-container">
+        <div id="empty-state" class="empty-state">
+          <svg
+            width="80"
+            height="80"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#aaa"
+            stroke-width="1.5"
+          >
+            <path
+              d="M12 5v14M5 12h14"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <p>SVG preview will appear here</p>
+        </div>
+        <div id="canvas"></div>
+      </div>
+
+      <div class="controls">
+        <div class="control-group">
+          <label>Gradient Colors</label>
+          <div id="color-stops" class="color-inputs">
+            <div class="color-stop" data-position="0">
+              <div class="color-input-container">
+                <input type="color" class="color-picker" value="#FF6900" />
+                <span class="remove-color">×</span>
+              </div>
+              <input
+                type="number"
+                class="color-position"
+                min="0"
+                max="100"
+                value="0"
+              />
+              <label>Start</label>
+            </div>
+            <div class="color-stop" data-position="100">
+              <div class="color-input-container">
+                <input type="color" class="color-picker" value="#8E51FF" />
+                <span class="remove-color">×</span>
+              </div>
+              <input
+                type="number"
+                class="color-position"
+                min="0"
+                max="100"
+                value="100"
+              />
+              <label>End</label>
+            </div>
+          </div>
+          <button id="add-color" class="add-color-btn">+ Add Color Stop</button>
+        </div>
+
+        <div class="control-group">
+          <label for="stroke-width">Stroke Width</label>
+          <input type="range" id="stroke-width" min="1" max="200" value="15" />
+          <output id="width-value">15px</output>
+        </div>
+
+        <div class="control-group">
+          <label for="num-segments">Gradient Segments</label>
+          <input
+            type="range"
+            id="num-segments"
+            min="20"
+            max="500"
+            value="100"
+          />
+          <output id="segments-value">100</output>
+        </div>
+
+        <div class="control-group">
+          <label for="padding">Padding</label>
+          <input type="range" id="padding" min="0" max="50" value="10" />
+          <output id="padding-value">10</output>
+        </div>
+
+        <div class="control-group">
+          <label for="scale-factor">Export Scale:</label>
+          <select id="scale-factor">
+            <option value="1">1x</option>
+            <option value="2">2x</option>
+            <option value="3">3x</option>
+            <option value="4">4x</option>
+            <option value="5">5x</option>
+            <option value="6">6x</option>
+            <option value="7">7x</option>
+            <option value="8">8x</option>
+          </select>
+          <button id="export-button">Export as PNG</button>
+        </div>
+      </div>
+
+      <div id="instructions">
+        <h3>Instructions</h3>
+        <ol>
+          <li>Drop an SVG file with a single path into the drop zone</li>
+          <li>
+            Add or modify gradient color stops with position percentages (0-100)
+          </li>
+          <li>Adjust the stroke width as needed</li>
+          <li>
+            Set the number of gradient segments (more segments = smoother
+            gradient)
+          </li>
+          <li>Click "Export as PNG" to download the result</li>
+        </ol>
+        <p>
+          <strong>Note:</strong> This tool creates gradients that truly follow
+          the path's direction.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
